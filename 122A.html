@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>122a</title>
+    <style>
+        #board{
+            display: grid;
+            grid-template-columns: repeat(8, 100px);
+            grid-template-rows: repeat(8, 100);
+        }
+
+        #board>div{
+            border: 1px solig lightblue;
+        }
+
+        .selected{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="board"></div>
+    <script>
+        let selectedSquareIndex = 7;
+        const size = 64;
+
+        showBoard();
+
+        function showBoard(){
+            //Alle rutene som ligger før 'selected'
+            const lengthPart1 = selectedSquareIndex; //vi får 7 ruter - 0-6
+            const pattern = '<div></div>'; //Dette skal gjentas, for å lage tomme ruter
+            const part1 = ''.padEnd(pattern.length * lengthPart1, pattern) //lengden av pattern ganget med lengen av part1(altså 7 ruter), vi legger til pattern
+            document.getElementById('board').innerHTML = part1;
+
+            //Ruten som er selected
+            const part2 = '<div class="selected"></div>'; //Vi gir den 'selected' klassen for å markere at den er valgt
+            document.getElementById('board').innerHTML += part2;
+
+            //Alle ruter som kommer etter 'selected'
+            const lengthPart3 = size - (selectedSquareIndex + 1); //64 - 8
+            const part3 = ''.padEnd(pattern.length * lengthPart3, pattern) //Samme system som over i part1
+            document.getElementById('board').innerHTML += part3;
+        }
+    </script>
+</body>
+</html>
