@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        .buttonSizes{
+            border: black solid 2px;
+            height:fit-content;
+            width: fit-content;
+            font-size: small;
+            padding: 2px;
+            margin: 2px;
+
+        }
+        #text{
+            height:fit-content;
+            width: fit-content;
+            border: black solid 2px;
+            background-color: rgb(125, 125, 125);
+        }
+    </style>
+    <title>122c-e</title>
+</head>
+<body>
+    <div class="page">
+        <div id="text">Hei på deg din gamle sei</div>
+        <div class="buttonSizes">
+            <div>Endre størrelse på teksten</div>
+            <button onclick="changeFontSize(1)">+</button>
+            <button onclick="changeFontSize(-1)">-</button>
+        </div>
+        <select onchange="changeFontFamily(this.value)">
+            <option value="" disabled selected>Velg en font</option>
+            <option value="Arial">Arial</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Garmond">Garmond</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Brush Script MT">Brush Script MT</option>
+        </select>
+        <div>
+            <button onclick="changeBackgroundColor('red', 5)">Gjør mer rød</button>
+            <button onclick="changeBackgroundColor('red', -5)">Gjør mindre rød</button>
+            <button onclick="changeBackgroundColor('green', 5)">Gjør mer grønn</button>
+            <button onclick="changeBackgroundColor('green', -5)">Gjør mindre grønn</button>
+            <button onclick="changeBackgroundColor('blue', 5)">Gjør mer blå</button>
+            <button onclick="changeBackgroundColor('blue', -5)">Gjør mindre blå</button>
+        </div>
+    </div>
+
+    <script>
+        let currentFontSize = 12
+        let currentFontFamily = "Times New Roman";
+        let redValue = 125;
+        let greenValue = 125;
+        let blueValue = 125;
+
+        function changeFontSize(fontChange){
+            currentFontSize += fontChange;
+            document.getElementById('text').style.fontSize = `${currentFontSize}pt`;
+        }
+
+        function changeFontFamily(fontFamily){
+            currentFontFamily = fontFamily;
+            document.getElementById('text').style.fontFamily = currentFontFamily;
+        }
+
+        function changeBackgroundColor(color, value){
+            if(color == "red"){
+                redValue += value;
+            }
+            else if(color == "green"){
+                greenValue += value;
+            }
+            else if(color == "blue"){
+                blueValue += value;
+            }
+
+            document.getElementById('text').style.backgroundColor = `rgb(${redValue}, ${greenValue}, ${blueValue})`;
+        }        
+    </script>
+</body>
+</html>
